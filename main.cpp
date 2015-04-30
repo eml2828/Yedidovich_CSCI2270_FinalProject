@@ -7,16 +7,16 @@ using namespace std;
 int main()
 {
     Library L;
-    int choice = 0;
+    string choice;
     string searchTitle = "";
 
     string in_title; int in_year; string in_type; string in_genre; int in_quantity; string in_author;
 
-    while(choice!=10)
+    while(choice!="10")
     {
         cout<<"Welcome to your library organizer! Please pick an option below:"<<endl<<"1. Check the status of an item"<<endl<<"2. Checkout or return an item"<<endl<<"3. Add an item to the library"<<endl<<"4. Delete an item from the library"<<endl<<"5. Display all items of a type"<<endl<<"6. Display all items"<<endl<<"7. Print list of persons with checked-out items"<<endl<<"8. Print list of all checked-out items"<<endl<<"9. Print list of all available items"<<endl<<"10. Quit"<<endl;
         cin>>choice;
-        if(choice == 1) //Check item status
+        if(choice == "1") //Check item status
         {
             cout<<"What is the title?"<<endl;
             cin.ignore(2000,'\n');
@@ -24,10 +24,10 @@ int main()
             cout<<endl;
             L.checkStatus(searchTitle);
         }
-        else if(choice == 2) //Checkout/return
+        else if(choice == "2") //Checkout/return
         {
-            choice = 0;
-            while(choice!=1&&choice!=2)
+            choice = "0";
+            while(choice!="1"&&choice!="2")
             {
                 cout<<"1. Check out"<<endl<<"2. Return"<<endl;
                 cin>>choice;
@@ -37,12 +37,12 @@ int main()
             getline(cin,in_title);
             cout<<"What's your name?"<<endl;
             cin>>in_author;
-            if(choice == 1)
+            if(choice == "1")
                 L.checkOutItem(in_title, in_author);
             else
                 L.returnItem(in_title);
         }
-        else if(choice == 3) //Add a movie
+        else if(choice == "3") //Add a movie
         {
             cout<<"What is its title?"<<endl;
             cin.ignore(1000,'\n');
@@ -61,18 +61,18 @@ int main()
             cin>>in_type;
             L.insertItem( in_title,  in_year,  in_type,  in_genre,  in_quantity, in_author);
         }
-        else if(choice == 4)
+        else if(choice == "4")
         {
             cout<<"What's the title?"<<endl;
             cin.ignore(1000,'\n');
             getline(cin,in_title);
             L.deleteItem(in_title);
         }
-        else if(choice == 5)
+        else if(choice == "5")
         {
-            choice = 0;
+            choice = "0";
             cout<<endl;
-            while(choice!=1&&choice!=2&&choice!=3)
+            while(choice!="1"&&choice!="2"&&choice!="3")
             {
                 cout<<"Filter what?"<<endl<<"1. Genre"<<endl<<"2. Media type"<<endl<<"3. Author"<<endl;
                 cin>>choice;
@@ -80,14 +80,14 @@ int main()
             cout<<"Find what?"<<endl;
             cin.ignore(1000,'\n');
             getline(cin,in_title);
-            L.printInventory(choice, in_title);
+            L.printInventory(stoi(choice), in_title);
         }
-        else if(choice == 6)
+        else if(choice == "6")
         {
             cout<<endl;
             L.printAllInventory();
         }
-        else if(choice == 7)
+        else if(choice == "7")
         {
             cout<<endl;
             L.printRenters();
